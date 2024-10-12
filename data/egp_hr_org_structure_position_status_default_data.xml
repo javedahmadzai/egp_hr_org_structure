@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+<!--         Default data for position.status model-->
+        <record id="position_status_default_records_cancelled" model="position.status">
+            <field name="position_status"><![CDATA[تنقیض]]></field>
+        </record>
+        <record id="position_status_default_records_new" model="position.status">
+            <field name="position_status"><![CDATA[تزیید]]></field>
+        </record>
+        <record id="position_status_default_records_carried_overed" model="position.status">
+            <field name="position_status"><![CDATA[انتقال از تشکیل قبلي]]></field>
+        </record>
+        <record id="position_status_default_records_changed" model="position.status">
+            <field name="position_status"><![CDATA[تغیر بست]]></field>
+        </record>
+                <record id="position_status_default_records_cancelled" model="position.status">
+            <field name="position_status">Cancelled</field>
+        </record>
+        <record id="position_status_default_records_new" model="position.status">
+            <field name="position_status">Newly Created</field>
+        </record>
+        <record id="position_status_default_records_carried_overed" model="position.status">
+            <field name="position_status">Carried from Last Year</field>
+        </record>
+        <record id="position_status_default_records_changed" model="position.status">
+            <field name="position_status">Changed</field>
+        </record>
+    </data>
+</odoo>

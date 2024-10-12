@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--hr.work.location default data is created-->
+        <record id="hr_work_location_default_records_central_english" model="hr.work.location">
+            <field name="name">Capital/Kabul</field>
+            <field name="address_id" ref="res_partner_default_records_central"/>
+        </record>
+
+        <record id="hr_work_location_default_records_NGR" model="hr.work.location">
+            <field name="name"><![CDATA[Provincial/Nangarhar]]></field>
+            <field name="address_id" ref="res_partner_default_records_NGR"/>
+        </record>
+        <record id="hr_work_location_default_records_LGMN" model="hr.work.location">
+            <field name="name"><![CDATA[Provincial/Laghman]]></field>
+            <field name="address_id" ref="res_partner_default_records_LGMN"/>
+        </record>
+        <record id="hr_work_location_default_records_HRT" model="hr.work.location">
+            <field name="name"><![CDATA[ولایات/هرات]]></field>
+            <field name="address_id" ref="res_partner_default_records_HRT"/>
+        </record>
+        <record id="hr_work_location_default_records_MZR" model="hr.work.location">
+            <field name="name"><![CDATA[ولایات/مزار شریف]]></field>
+            <field name="address_id" ref="res_partner_default_records_MZR"/>
+        </record>
+    </data>
+</odoo>

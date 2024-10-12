@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--    This Category is created for Taskilat section of HRMIS System-->
+    <record id="egp_hr_org_structure.Category" model="ir.module.category">
+        <field name="name">EGP Tashkilat Department</field>
+        <field name="description">It covers all groups related to Tashkilat Department</field>
+        <field name="sequence">1</field>
+        <field name="visible" eval="True"/>
+    </record>
+
+    <record id="group_tashkil_ameriat" model="res.groups">
+        <field name="name">Officer/Amir</field>
+        <field name="category_id" ref="egp_hr_org_structure.Category"/>
+        <field name="comment">The user will be able to create new Tashkil and approve Tashkil created by
+            Expert/Karshinas.
+        </field>
+    </record>
+
+    <record id="group_tashkil_karshnas" model="res.groups">
+        <field name="name">Expert/Karshanas</field>
+        <field name="category_id" ref="egp_hr_org_structure.Category"/>
+        <field name="comment">The user will be able to create new Tashkil with all its' relevant field</field>
+    </record>
+
+    <record id="group_tashkil_Layha_Wazaif_Karmand" model="res.groups">
+        <field name="name">Job Description Manager</field>
+        <field name="category_id" ref="egp_hr_org_structure.Category"/>
+        <field name="comment">The user will only have access to (hr.job model) or job position menu to add Layha Wazaif
+            to the job positions created by Officer/Amir or Expert/Karshinas user.
+        </field>
+    </record>
+
+    <!--    Employee/Department menu visibility for Officer/Amir groups-->
+    <record id="hr.menu_hr_department_kanban" model="ir.ui.menu">
+        <field name="groups_id" eval="[(4, ref('egp_hr_org_structure.group_tashkil_ameriat'))]"/>
+    </record>
+
+    <!--    &lt;!&ndash;    Employee/Configuration/Badges menu invisible for Officer/Amir groups&ndash;&gt;-->
+    <!--        <record id="hr_gamification.gamification_badge_menu_hr" model="ir.ui.menu">-->
+    <!--            <field name="groups_id" eval="[(4, ref('base.group_erp_manager'))]"/>-->
+    <!--        </record>-->
+
+    <!--    Employee/Department menu visibility for Expert/Karshanas -->
+    <record id="hr.menu_hr_department_kanban" model="ir.ui.menu">
+        <field name="groups_id" eval="[(4, ref('egp_hr_org_structure.group_tashkil_karshnas'))]"/>
+    </record>
+
+    <!--    Employee/Configuration menu visibility for Officer/Amir-->
+    <record id="hr.menu_human_resources_configuration" model="ir.ui.menu">
+        <field name="groups_id" eval="[(4, ref('egp_hr_org_structure.group_tashkil_ameriat'))]"/>
+    </record>
+
+    <!--    Employee/Configuration menu visibility for Expert/Karshanas -->
+    <record id="hr.menu_human_resources_configuration" model="ir.ui.menu">
+        <field name="groups_id" eval="[(4, ref('egp_hr_org_structure.group_tashkil_karshnas'))]"/>
+    </record>
+
+    <!--    Employee/Configuration/Employee menu visibility for Officer/Amir-->
+    <record id="hr.menu_config_employee" model="ir.ui.menu">
+        <field name="groups_id" eval="[(4, ref('egp_hr_org_structure.group_tashkil_ameriat'))]"/>
+    </record>
+
+    <!--    Employee/Configuration/Employee menu visibility for Expert/Karshanas-->
+    <record id="hr.menu_config_employee" model="ir.ui.menu">
+        <field name="groups_id" eval="[(4, ref('egp_hr_org_structure.group_tashkil_karshnas'))]"/>
+    </record>
+
+    <!--    Employee/Configuration/Recruitment menu visibility for Officer/Amir-->
+    <record id="hr.menu_config_recruitment" model="ir.ui.menu">
+        <field name="groups_id" eval="[(4, ref('egp_hr_org_structure.group_tashkil_ameriat'))]"/>
+    </record>
+
+    <!--    Employee/Configuration/Recruitment menu visibility for Expert/Karshanas-->
+    <record id="hr.menu_config_recruitment" model="ir.ui.menu">
+        <field name="groups_id" eval="[(4, ref('egp_hr_org_structure.group_tashkil_karshnas'))]"/>
+    </record>
+
+
+    <!--    Employee/Configuration/Employee/Department menu visibility for Officer/Amir-->
+    <record id="hr.menu_hr_department_tree" model="ir.ui.menu">
+        <field name="groups_id" eval="[(4, ref('egp_hr_org_structure.group_tashkil_ameriat'))]"/>
+    </record>
+
+    <!--    Employee/Configuration/Employee/Department menu visibility for Expert/Karshanas-->
+    <record id="hr.menu_hr_department_tree" model="ir.ui.menu">
+        <field name="groups_id" eval="[(4, ref('egp_hr_org_structure.group_tashkil_karshnas'))]"/>
+    </record>
+
+    <!--    Employee/Configuration/Work location menu visibility for Officer/Amir-->
+    <record id="hr.menu_hr_work_location_tree" model="ir.ui.menu">
+        <field name="groups_id" eval="[(4, ref('egp_hr_org_structure.group_tashkil_ameriat'))]"/>
+    </record>
+
+    <!--    Employee/Configuration/Work location menu visibility for Karshanas/Expert-->
+    <record id="hr.menu_hr_work_location_tree" model="ir.ui.menu">
+        <field name="groups_id" eval="[(4, ref('egp_hr_org_structure.group_tashkil_karshnas'))]"/>
+    </record>
+
+    <!--    Employee/Configuration/Job Position menu visibility for Officer/Amir-->
+    <record id="hr.menu_view_hr_job" model="ir.ui.menu">
+        <field name="groups_id" eval="[(4, ref('egp_hr_org_structure.group_tashkil_ameriat'))]"/>
+    </record>
+
+    <!--    Employee/Configuration/Job Position menu visibility for Expert/Karshanas-->
+    <record id="hr.menu_view_hr_job" model="ir.ui.menu">
+        <field name="groups_id" eval="[(4, ref('egp_hr_org_structure.group_tashkil_karshnas'))]"/>
+    </record>
+
+    <!--  Employee/Configuration/Job Position menu visibility for Job Desp. Writer -->
+    <record id="hr.menu_view_hr_job" model="ir.ui.menu">
+        <field name="groups_id" eval="[(4, ref('egp_hr_org_structure.group_tashkil_Layha_Wazaif_Karmand'))]"/>
+    </record>
+
+    <!--    Employee/Configuration/Employee menu visibility for Job Desp. Writer -->
+    <record id="hr.menu_config_employee" model="ir.ui.menu">
+        <field name="groups_id" eval="[(4, ref('egp_hr_org_structure.group_tashkil_Layha_Wazaif_Karmand'))]"/>
+    </record>
+
+    <!--    Employee/Configuration/Employment Type menu visibility for Officer/Amir-->
+    <record id="hr.menu_view_hr_contract_type" model="ir.ui.menu">
+        <field name="groups_id" eval="[(4, ref('egp_hr_org_structure.group_tashkil_ameriat'))]"/>
+    </record>
+
+    <!--    Employee/Employee menu visibility for Officer/Amir-->
+    <record id="hr.menu_hr_root" model="ir.ui.menu">
+        <field name="groups_id" eval="[(4, ref('egp_hr_org_structure.group_tashkil_ameriat'))]"/>
+    </record>
+
+    <!--    Employee/Employee menu visibility for Expert/Karshanas-->
+    <record id="hr.menu_hr_root" model="ir.ui.menu">
+        <field name="groups_id" eval="[(4, ref('egp_hr_org_structure.group_tashkil_karshnas'))]"/>
+    </record>
+
+    <!--    Employee/Employee menu visibility for Layaha Wazayif-->
+    <record id="hr.menu_hr_root" model="ir.ui.menu">
+        <field name="groups_id" eval="[(4, ref('egp_hr_org_structure.group_tashkil_Layha_Wazaif_Karmand'))]"/>
+    </record>
+
+    <!--    Employee/Configuration/Employment Type menu visibility for Expert/Karshanas-->
+    <record id="hr.menu_view_hr_contract_type" model="ir.ui.menu">
+        <field name="groups_id" eval="[(4, ref('egp_hr_org_structure.group_tashkil_karshnas'))]"/>
+    </record>
+
+</odoo>
+
+
+

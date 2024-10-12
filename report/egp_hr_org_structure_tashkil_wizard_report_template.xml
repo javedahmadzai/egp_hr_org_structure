@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="tashkil_wizard_report_template">
+            <link rel="stylesheet" href="/egp_hr_org_structure/static/src/css/rtl_direction.css"/>
+            <t t-call="web.html_container">
+                <t t-call="web.basic_layout">
+                    <div class="page" style="font-family: Calibri;">
+                        <div class="row">
+                            <div class="col-4" style="margin-left: 0; text-align: left;">
+                                <div class="text-left" style="text-align: left;">
+                                    <img src="/egp_hr_org_structure/static/description/logo.png" height="150px;"
+                                         width="130px;" alt="Left Logo"/>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="content" style="text-align: center;">
+                                    <h5>Islamic Emirates of Afghanistan</h5>
+                                    <p>Ministry of Information and Telecommunication</p>
+                                    <p>Directorate of Human Resource</p>
+                                </div>
+                            </div>
+                            <div class="col-4" style="margin-right: 0; text-align: right;">
+                                <div class="text-right">
+                                    <img src="/egp_hr_org_structure/static/description/eia.png" height="150px;"
+                                         width="130px;" alt="Right Logo"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h2 style="font-weight: bold; background-color: #F2F2F2; text-align: center;">
+                                Formation Selective Report
+                            </h2>
+                        </div>
+
+                        <t t-set="tashkils" t-value="env['egp.tashkil'].browse(tashkil_ids)"/>
+                        <t t-foreach="tashkils" t-as="tashkil">
+                            <div style="page-break-inside: avoid; margin-bottom: 20px;">
+                                <!-- Tashkil Details -->
+                                <h3>Tashkil Name:
+                                    <t t-esc="tashkil.name"/>
+                                </h3>
+                                <p>
+                                    <strong>Tashkil Year:</strong>
+                                    <t t-esc="tashkil.creation_year"/>
+                                </p>
+                                <p>
+                                    <strong>Sequence Number:</strong>
+                                    <t t-esc="tashkil.sequence_number"/>
+                                </p>
+                                <p>
+                                    <strong>Description:</strong>
+                                    <t t-esc="tashkil.description"/>
+                                </p>
+
+                                <!-- Table for Newly added Departments -->
+                                <h4>New Departments</h4>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th style="font-weight: bold; background-color: #F2F2F2;">#</th>
+                                            <th style="font-weight: bold; background-color: #F2F2F2;">Department Name
+                                            </th>
+                                            <th style="font-weight: bold; background-color: #F2F2F2;">Code</th>
+                                            <th style="font-weight: bold; background-color: #F2F2F2;">Creation Year</th>
+                                            <th style="font-weight: bold; background-color: #F2F2F2;">Parent</th>
+                                            <th style="font-weight: bold; background-color: #F2F2F2;">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-set="counter" t-value="1"/>
+                                        <t t-foreach="tashkil.department_new_ids" t-as="department">
+                                            <tr style="margin-right: 0; text-align: center;">
+                                                <td>
+                                                    <t t-esc="counter"/>
+                                                </td>
+                                                <t t-set="counter" t-value="counter+1"/>
+                                                <td>
+                                                    <t t-esc="department.name"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="department.department_code"/>
+                                                </td>
+                                                 <td>
+                                                    <t t-esc="department.department_creation_year if department.department_creation_year else ''"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="department.parent_department_id.name if department.parent_department_id else ''"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="department.get_position_status_label()"/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+
+                                <!-- Table for Changed Departments -->
+                                <h4>Changed Departments</h4>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th style="font-weight: bold; background-color: #F2F2F2;">#</th>
+                                            <th style="font-weight: bold; background-color: #F2F2F2;">Current Department
+                                            </th>
+                                            <th style="font-weight: bold; background-color: #F2F2F2;">Changed To</th>
+                                            <th style="font-weight: bold; background-color: #F2F2F2;">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-set="counter" t-value="1"/>
+                                        <t t-foreach="tashkil.department_change_ids" t-as="change_department">
+                                            <tr style="margin-right: 0; text-align: center;">
+                                                <td>
+                                                    <t t-esc="counter"/>
+                                                </td>
+                                                <t t-set="counter" t-value="counter+1"/>
+                                                <td>
+                                                    <t t-esc="change_department.department_id.name"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="change_department.parent_department_id.name"/>
+                                                </td>
+                                                <td>
+                                                    <span>Changed</span>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+
+                                <!-- Table for Changed Position Departments -->
+                                <h4>Changed Positions Departments</h4>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th style="font-weight: bold; background-color: #F2F2F2;">#</th>
+                                            <th style="font-weight: bold; background-color: #F2F2F2;">Position Name
+                                            </th>
+                                            <th style="font-weight: bold; background-color: #F2F2F2;">Code</th>
+                                            <th style="font-weight: bold; background-color: #F2F2F2;">Rank</th>
+                                            <th style="font-weight: bold; background-color: #F2F2F2;">Creation Year</th>
+                                            <th style="font-weight: bold; background-color: #F2F2F2;">Changed
+                                                Department
+                                            </th>
+                                            <th style="font-weight: bold; background-color: #F2F2F2;">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-set="counter" t-value="1"/>
+                                        <t t-foreach="tashkil.changed_department_job_positions" t-as="change_position">
+                                            <tr style="margin-right: 0; text-align: center;">
+                                                <td>
+                                                    <t t-esc="counter"/>
+                                                </td>
+                                                <t t-set="counter" t-value="counter+1"/>
+                                                <td>
+                                                    <t t-esc="change_position.job_id.name"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="change_position.change_position_code"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="change_position.get_change_position_rank_label()"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="change_position.change_position_creation_year"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="change_position.position_change_department.name if change_position.position_change_department else ''"/>
+                                                </td>
+                                                <td>
+                                                    <span>Changed</span>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+
+                                <!-- Table for Archive Departments -->
+                                <h4>Archive Departments</h4>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th style="font-weight: bold; background-color: #F2F2F2;">#</th>
+                                            <th style="font-weight: bold; background-color: #F2F2F2;">Department Name
+                                            </th>
+                                            <th style="font-weight: bold; background-color: #F2F2F2;">Code</th>
+                                            <th style="font-weight: bold; background-color: #F2F2F2;">Year</th>
+                                            <th style="font-weight: bold; background-color: #F2F2F2;">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-set="counter" t-value="1"/>
+                                        <t t-foreach="tashkil.cancelled_department_ids" t-as="cancelled">
+                                            <tr style="margin-right: 0; text-align: center;">
+                                                <td>
+                                                    <t t-esc="counter"/>
+                                                </td>
+                                                <t t-set="counter" t-value="counter+1"/>
+                                                <td>
+                                                    <t t-esc="cancelled.department_id.name"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="cancelled.cancel_dep_code"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="cancelled.cancel_dep_year"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="cancelled.department_active and 'Active' or 'Inactive'"/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+
+                                <!-- Table for Archive Departments -->
+                                <h4>Cancel Positions</h4>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th style="font-weight: bold; background-color: #F2F2F2;">#</th>
+                                            <th style="font-weight: bold; background-color: #F2F2F2;">Position Name
+                                            </th>
+                                            <th style="font-weight: bold; background-color: #F2F2F2;">Creation Year</th>
+                                            <th style="font-weight: bold; background-color: #F2F2F2;">Code</th>
+                                            <th style="font-weight: bold; background-color: #F2F2F2;">Rank</th>
+                                            <th style="font-weight: bold; background-color: #F2F2F2;">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-set="counter" t-value="1"/>
+                                        <t t-set="counter" t-value="1"/>
+                                        <t t-foreach="tashkil.cancelled_job_positions" t-as="cancelled_position">
+                                            <tr style="margin-right: 0; text-align: center;">
+                                                <td>
+                                                    <t t-esc="counter"/>
+                                                </td>
+                                                <t t-set="counter" t-value="counter+1"/>
+                                                <td>
+                                                    <t t-esc="cancelled_position.job_id.name"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="cancelled_position.change_position_creation_year"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="cancelled_position.change_position_code"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="cancelled_position.get_change_position_rank_label()"/>
+                                                </td>
+                                                <td>
+                                                    <span>In-active</span>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+
+                                <!-- Table for New Positions -->
+                                <h4>New Positions</h4>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th style="font-weight: bold; background-color: #F2F2F2;">#</th>
+                                            <th style="font-weight: bold; background-color: #F2F2F2;">Position Name</th>
+                                            <th style="font-weight: bold; background-color: #F2F2F2;">Code</th>
+                                            <th style="font-weight: bold; background-color: #F2F2F2;">Rank</th>
+                                            <th style="font-weight: bold; background-color: #F2F2F2;">Creation Year</th>
+                                            <th style="font-weight: bold; background-color: #F2F2F2;">Department</th>
+                                            <th style="font-weight: bold; background-color: #F2F2F2;">Vacancies</th>
+                                            <th style="font-weight: bold; background-color: #F2F2F2;">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-set="counter" t-value="1"/>
+                                        <t t-foreach="tashkil.position_new_ids" t-as="position">
+                                            <tr style="margin-right: 0; text-align: center;">
+                                                <td>
+                                                    <t t-esc="counter"/>
+                                                </td>
+                                                <t t-set="counter" t-value="counter+1"/>
+                                                <td>
+                                                    <t t-esc="position.position_name"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="position.position_code"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="position.get_position_position_rank_label()"/>
+                                                </td>
+                                                 <td>
+                                                    <t t-esc="position.creation_year if position.creation_year else ''"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="position.department_id.name if position.department_id else ''"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="position.no_to_recruit"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="position.get_position_status_label()"/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </t>
+                    </div>
+                </t>
+            </t>
+            <footer>
+                <div class="footer" style="margin-top: 600px;">
+                </div>
+            </footer>
+        </template>
+    </data>
+</odoo>

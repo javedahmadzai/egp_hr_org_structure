@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+        <template id="report_custom_job_description_template">
+            <link rel="stylesheet" href="egp_hr_org_structure/static/src/css/rtl_direction.css"/>
+            <t t-call="web.html_container">
+                <t t-call="web.basic_layout">
+                    <div class="page" style="font-family: Calibri;">
+                        <div class="row">
+                            <div class="col-4" style="margin-left: 0; text-align: left;">
+                                <div class="text-left" style="text-align: left;">
+                                    <img src="egp_hr_org_structure/static/description/logo.png" height="150px;"
+                                         width="130px;"
+                                         alt="Left Logo"/>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="content" style="text-align: center;">
+                                    <h5>Islamic Emirates of Afghanistan</h5>
+                                    <p>
+                                        Ministry of Information and Telecommunication
+                                        <br/>
+                                        Directorate of Human Resource
+                                        <br/>
+                                        Recruitment office
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-4" style="margin-right: 0; text-align: right;">
+                                <div class="text-right">
+                                    <img src="egp_hr_org_structure/static/description/eia.png" height="150px;"
+                                         width="130px;"
+                                         alt="Right Logo"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="text-align: center;">
+                            <h4>Job Summary for Civil Employees</h4>
+                        </div>
+                        <!--  Table with Employee Data  -->
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Position Name</th>
+                                    <th>Creation Year</th>
+                                    <th>Rank</th>
+                                    <th>Code</th>
+                                    <th>Status</th>
+                                    <th>Location</th>
+                                    <th>Department</th>
+                                    <th>Number of Target Employees</th>
+                                    <th>Report to</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!--  Initialize total employee count  -->
+                                <t t-set="total_employees" t-value="0"/>
+                                <t t-foreach="docs" t-as="doc">
+                                    <tr>
+                                        <td>
+                                            <t t-esc="doc.name"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="doc.creation_year"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="doc.position_rank"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="doc.code"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="doc.get_position_activeness_check_label()"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="doc.work_location_id.name"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="doc.department_id.name"/>
+                                        </td>
+                                        <td>
+                                            <!--  Display the number of target employees and accumulate the total  -->
+                                            <t t-esc="doc.no_of_recruitment"/>
+                                            <t t-set="total_employees"
+                                               t-value="total_employees + doc.no_of_recruitment"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="doc.report_to_id.name"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                                <!--  Display total employee count in the last row  -->
+                                <tr>
+                                    <td colspan="7" style="text-align: center;">
+                                        <strong>Total Employees</strong>
+                                    </td>
+                                    <td colspan="2" style="text-align:right;">
+                                        <t t-esc="total_employees"/>
+                                    </td>
+                                    <!--                             <td></td> -->
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p style="page-break-after: always;"/>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

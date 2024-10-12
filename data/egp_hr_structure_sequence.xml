@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="egp_hr_structure_tashkil_sequence" model="ir.sequence">
+            <field name="name">Tashkil Sequence</field>
+            <field name="code">egp.tashkil</field>
+            <field name="active">TRUE</field>
+            <field name="prefix">MCIT/AF/</field>
+            <field name="padding">4</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+        </record>
+    </data>
+</odoo>

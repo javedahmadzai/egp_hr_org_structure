@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- extended form for hr.department view -->
+    <record id="egp_hr_org_structure_department_form" model="ir.ui.view">
+        <field name="name">egp.hr.department.form</field>
+        <field name="model">hr.department</field>
+        <field name="inherit_id" ref="hr.view_department_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="organization_year" required="1"/>
+            </xpath>
+
+            <xpath expr="//field[@name='organization_year']" position="after">
+                <field name="code"/>
+            </xpath>
+
+            <xpath expr="//field[@name='parent_id']" position="after">
+                <field name="color" required="1"/>
+            </xpath>
+
+            <xpath expr="//field[@name='manager_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='color']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <!--        extended tree for hr.department view-->
+    <record id="egp_hr_org_structure_department_tree" model="ir.ui.view">
+        <field name="name">egp_hr_org_structure_department_tree</field>
+        <field name="model">hr.department</field>
+        <field name="inherit_id" ref="hr.view_department_tree"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="organization_year" string=" Creation Year" required="1"/>
+            </xpath>
+
+            <xpath expr="//field[@name='organization_year']" position="after">
+                <field name="code" string=" Code"/>
+            </xpath>
+
+             <xpath expr="//field[@name='code']" position="after">
+                <field name="active" string=" State"/>
+            </xpath>
+
+            <xpath expr="//field[@name='manager_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+<!--            <xpath expr="//field[@name='color']" position="attributes">-->
+<!--                <attribute name="groups">egp_hr_org_structure.group_tashkil_Layha_Wazaif_Karmand_second</attribute>-->
+<!--            </xpath>-->
+
+            <xpath expr="//field[@name='manager_id']" position="attributes">
+                <attribute name="column_invisible">1</attribute>
+            </xpath>
+
+        </field>
+    </record>
+    <record id="egp_hr_org_structure_department_search_view" model="ir.ui.view">
+        <field name="name">egp.hr.department.search.view</field>
+        <field name="model">hr.department</field>
+        <field name="inherit_id" ref="hr.view_department_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <field name="organization_year"/>
+                <field name="code"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_year" string="Creation Year" domain="[]"
+                            context="{'group_by':'organization_year'}"/>
+                    <separator/>
+                    <filter name="group_by_code" string="Department Code" domain="[]"
+                            context="{'group_by':'code'}"/>
+                    <separator/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="hr.hr_department_kanban_action" model="ir.actions.act_window">
+        <field name="help" type="html">
+            <p class="o_view_nocontent_custom">
+                Create a new department!
+            </p>
+            <p>
+                EGP-HR department structure is used to manage all documents
+                related to employees by departments: expenses, timesheets,
+                time off, recruitments, etc.
+            </p>
+        </field>
+    </record>
+
+</odoo>
+

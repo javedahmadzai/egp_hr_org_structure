@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- inherited and extended tree view for hr.work.location model   -->
+    <record id="egp_hr_org_structure_work_location_tree" model="ir.ui.view">
+        <field name="name">egp.hr.work.location.tree</field>
+        <field name="model">hr.work.location</field>
+        <field name="inherit_id" ref="hr.hr_work_location_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='location_type']" position="before">
+                <field name="address_id"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

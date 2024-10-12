@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="egp_hr_org_structure_tashkil_report_wizard_form" model="ir.ui.view">
+        <field name="name">Tashkil Wizard Report Form</field>
+        <field name="model">tashkil.wizard.report</field>
+        <field name="arch" type="xml">
+            <form string="Tashkil Selective Report">
+                <group>
+                    <field name="tashkil_ids" widget="many2many_tags"
+                           options="{'no_edit': True, 'no_create': True, 'no_open': True}"/>
+                </group>
+                <footer>
+                    <button name="generate_tashkil_wizard_report" string="Generate Report" type="object"
+                            class="btn-primary" help="Generate report"
+                            groups="egp_hr_org_structure.group_tashkil_ameriat"/>
+                    <button name="action_cancel" type="object" class="btn-danger"
+                            string="Cancel" title="Close This Wizard PopUp"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="egp_hr_org_structure_tashkil_report_wizard_action" model="ir.actions.act_window">
+        <field name="name">Selective Report</field>
+        <field name="res_model">tashkil.wizard.report</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem
+            id="egp_hr_org_structure_taskil_comparision_menu"
+            name="Selective Report"
+            parent="egp_hr_org_structure_tashkil_root_menu"
+            action="egp_hr_org_structure_tashkil_report_wizard_action"
+            sequence="20"
+            groups="egp_hr_org_structure.group_tashkil_ameriat"/>
+</odoo>

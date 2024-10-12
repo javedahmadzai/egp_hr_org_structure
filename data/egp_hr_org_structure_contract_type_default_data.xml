@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Default data for hr.contract.type model -->
+        <record id="hr_contract_type_default_records_permanent" model="hr.contract.type">
+            <field name="name"><![CDATA[دایمي]]></field>
+            <field name="code"><![CDATA[دایمي]]></field>
+        </record>
+        <record id="hr_contract_type_default_records_temporary" model="hr.contract.type">
+            <field name="name"><![CDATA[باالمقطع]]></field>
+            <field name="code"><![CDATA[باالمقطع]]></field>
+        </record>
+        <record id="hr_contract_type_default_records_contracted" model="hr.contract.type">
+            <field name="name"><![CDATA[قراردادي]]></field>
+            <field name="code"><![CDATA[قراردادي]]></field>
+        </record>
+    </data>
+</odoo>

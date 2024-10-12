@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="stage_long_list" model="hr.recruitment.stage">
+        <field name="name"> <![CDATA[لانګ لیست]]> </field>
+        <field name="sequence">8</field>
+        <field name="fold">False</field>
+        <field name="requirements">Review and shortlist candidates</field>
+        <!--    <field name="description">Review applications and create a long list of potential candidates.</field>-->
+    </record>
+    <record id="stage_short_list" model="hr.recruitment.stage">
+        <field name="name"><![CDATA[شارټ لیست]]></field>
+        <field name="sequence">9</field>
+        <field name="fold">False</field>
+        <field name="requirements">Narrow down the candidate pool</field>
+    </record>
+    <record id="stage_exam" model="hr.recruitment.stage">
+        <field name="name"><![CDATA[تحریری امتحان]]></field>
+        <field name="sequence">10</field>
+        <field name="fold">False</field>
+        <field name="requirements">Conduct written or practical exams</field>
+    </record>
+    <record id="stage_interview" model="hr.recruitment.stage">
+        <field name="name"><![CDATA[انټرویو/مرکه]]></field>
+        <field name="sequence">11</field>
+        <field name="fold">False</field>
+        <field name="requirements">Conduct interviews</field>
+    </record>
+    <record id="stage_pass" model="hr.recruitment.stage">
+        <field name="name"><![CDATA[کامیاب]]></field>
+        <field name="sequence">12</field>
+        <field name="fold">True</field>
+        <field name="requirements">Candidate has successfully cleared all stages</field>
+    </record>
+    <record id="degree_bachelor" model="hr.recruitment.degree">
+        <field name="name"><![CDATA[دولسم/پاس]]></field>
+    </record>
+    <record id="degree_bachelor" model="hr.recruitment.degree">
+        <field name="name"><![CDATA[لیسانس]]></field>
+    </record>
+    <record id="degree_bachelor" model="hr.recruitment.degree">
+        <field name="name"><![CDATA[لیسانس]]></field>
+    </record>
+    <record id="degree_master" model="hr.recruitment.degree">
+        <field name="name"><![CDATA[ماسټر]]></field>
+    </record>
+    <record id="degree_phd" model="hr.recruitment.degree">
+        <field name="name"><![CDATA[دوکتورا]]></field>
+    </record>
+    <record id="demo_refuse_reason_1" model="hr.applicant.refuse.reason">
+        <field name="name"><![CDATA[نوموړي بست لپاره په شرایطو برابر نه یاست]]></field>
+    </record>
+    <record id="demo_refuse_reason_2" model="hr.applicant.refuse.reason">
+        <field name="name"><![CDATA[ستاسې کاري تجربې اسناد مکمل نه و]]></field>
+    </record>
+    <record id="demo_refuse_reason_3" model="hr.applicant.refuse.reason">
+        <field name="name"><![CDATA[تاسې ونه شو کولی چې د کامیابی نمری ترلاسه کړی]]></field>
+    </record>
+    <record id="demo_mail_activity_type_phone_call" model="mail.activity.type">
+        <field name="name"><![CDATA[ټیلیفون کول]]></field>
+    </record>
+    <record id="demo_mail_activity_type_meeting" model="mail.activity.type">
+        <field name="name"><![CDATA[غونډه کول]]></field>
+    </record>
+    <record id="demo_mail_activity_type_email" model="mail.activity.type">
+        <field name="name"><![CDATA[برېښنالیک لیږل]]></field>
+    </record>
+    <record id="demo_mail_activity_type_follow_up" model="mail.activity.type">
+        <field name="name"><![CDATA[ کارونو څخه لیدنه ترسره کول]]></field>
+    </record>
+    <record id="demo_facebook_id" model="utm.source">
+        <field name="name"><![CDATA[ فیسبوک]]></field>
+    </record>
+    <record id="demo_twitter_id" model="utm.source">
+        <field name="name"><![CDATA[ټویټر]]></field>
+    </record>
+    <record id="demo_linkdin_id" model="utm.source">
+        <field name="name"><![CDATA[لینک ډېن]]></field>
+    </record>
+    <record id="demo_search_engine" model="utm.source">
+        <field name="name"><![CDATA[سرچ انجن]]></field>
+    </record>
+    <record id="demo_manager" model="hr.applicant.category">
+        <field name="name"><![CDATA[رییس]]></field>
+    </record>
+    <record id="demo_it" model="hr.applicant.category">
+        <field name="name"><![CDATA[ای ټي]]></field>
+    </record>
+    <record id="recruitment_dpt_res_country_state_default_data" model="res.country.state">
+        <field name="name">Nangarahar</field>
+        <field name="code">NGR</field>
+        <field name="country_id" ref="base.af"/>
+    </record>
+</odoo>

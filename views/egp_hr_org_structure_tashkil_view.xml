@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Tashkil Search View -->
+        <record id="egp_hr_org_structure_egp_tashkil_search_view" model="ir.ui.view">
+            <field name="name">egp.hr.tashkil.search.view</field>
+            <field name="model">egp.tashkil</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="sequence_number"/>
+                    <field name="name"/>
+                    <field name="creation_year"/>
+                    <field name="job_position_ids" string="Total Records"
+                           filter_domain="[('job_position_ids.department_id', 'ilike', self)]"/>
+                    <field name="state"/>
+                    <filter name="archived" string="Archived" domain="[('active','=',False)]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Tashkil Year" name="group_by_creation_year"
+                                context="{'group_by':'creation_year'}"/>
+                        <filter string="Sequence Number" name="group_by_sequence_number"
+                                context="{'group_by':'sequence_number'}"/>
+                        <filter string="State" name="group_by_state"
+                                context="{'group_by':'state'}"/>
+                    </group>
+                    <!-- Filter -->
+                    <filter string='State' name='filter_by_state'
+                            domain="['|', '|', '|', ('state', '=', 'draft'), ('state', '=', 'process'), ('state', '=', 'active'), ('state', '=', 'archived') ]"/>
+                </search>
+            </field>
+        </record>
+
+        <!-- gantt view for Tashkil -->
+        <record id="egp_hr_tashkil_gantt_view" model="ir.ui.view">
+            <field name="name">egp.hr.tashkil.gantt.view</field>
+            <field name="model">egp.tashkil</field>
+            <field name="arch" type="xml">
+                <gantt string="EGP Tashkil Gantt view" date_start="creation_year" date_stop="create_date">
+                </gantt>
+            </field>
+        </record>
+
+        <!-- Graph view for Tashkil -->
+        <record model="ir.ui.view" id="egp_hr_tashkil_graph">
+            <field name="name">egp.hr.tashkil.graph.view</field>
+            <field name="model">egp.tashkil</field>
+            <field name="arch" type="xml">
+                <graph string="EGP Tashkil" sample="1" type="pie">
+                    <field name="name"/>
+                    <field name="creation_year" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
+        <!-- Pivot view for Tashkil -->
+        <record id="egp_hr_tashkil_pivot_view" model="ir.ui.view">
+            <field name="name">egp.hr.tashkil.view.pivot</field>
+            <field name="model">egp.tashkil</field>
+            <field name="arch" type="xml">
+                <pivot string="New Tashkil" sample="1">
+                    <field name="create_date" interval="month" type="row"/>
+                    <field name="id"/>
+                </pivot>
+            </field>
+        </record>
+
+        <!-- Kanban View for Tashkil  -->
+        <record id="egp_hr_tashkil_kanban_view" model="ir.ui.view">
+            <field name="name">egp.hr.tashkil.kanban</field>
+            <field name="model">egp.tashkil</field>
+            <field name="priority">10</field>
+            <field name="arch" type="xml">
+                <kanban class="o_hr_employee_kanban" sample="1">
+                    <field name="id"/>
+                    <field name="name"/>
+                    <field name="image"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill o_hr_kanban_record">
+                                <t t-if="record.image.raw_value">
+                                    <field name="image" class="o_kanban_image_fill_left d-block"
+                                           widget="image" options="{'zoom': true, 'zoom_delay': 1000}"/>
+                                </t>
+                                <t t-elif="record.image.raw_value">
+                                    <field name="image" class="o_kanban_image_fill_left d-block"
+                                           widget="image" options="{'zoom': true, 'zoom_delay': 1000}"/>
+                                </t>
+                                <div t-else=""
+                                     class="o_kanban_image_fill_left d-flex align-items-center justify-content-center bg-100 bg-gradient">
+                                    <svg class="w-75 h-75 opacity-50" viewBox="0 0 20 20">
+                                        <g fill="currentColor">
+                                            <path d="M 10 11 C 4.08 11 2 14 2 16 L 2 19 L 18 19 L 18 16 C 18 14 15.92 11 10 11 Z"/>
+                                            <circle cx="10" cy="5.5" r="4.5"/>
+                                        </g>
+                                    </svg>
+                                </div>
+
+                                <div class="oe_kanban_details">
+                                    <div class="o_kanban_record_top">
+                                        <div class="o_kanban_record_headings">
+                                            <strong class="o_kanban_record_title">
+                                                <div t-if="record.sequence_number.raw_value">
+                                                    <field name="sequence_number" class="o_employee_availability"
+                                                           placeholder="Sequence number"/>
+                                                </div>
+                                            </strong>
+                                            <span t-if="record.name.raw_value"
+                                                  class="o_kanban_record_subtitle">
+                                                <field name="name"/>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <ul>
+                                        <li t-if="record.creation_year.raw_value" class="o_text_overflow">
+                                            <!--                                            <i class="fa fa-fw me-2 fa-envelope text-primary" title="Email"/>-->
+                                            <field name="creation_year"/>
+                                        </li>
+                                        <li t-if="record.description.raw_value" class="o_force_ltr">
+                                            <i class="fa fa-fw me-2 fa-solid fa-info text-primary" title="Description"/>
+                                            <field name="description"/>
+                                        </li>
+                                        <li class="hr_tags">
+                                            <field name="state"
+                                                   decoration-success="state == 'active'" widget="badge"
+                                                   decoration-danger="state == 'archived'"
+                                                   decoration-info="state == 'draft'"
+                                                   decoration-warning="state == 'process'"/>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="oe_kanban_content o_hr_employee_kanban_bottom position-absolute bottom-0 start-0 end-0">
+                                    <div class="o_kanban_record_bottom mt-3">
+                                        <div class="oe_kanban_bottom_left"/>
+                                        <div class="oe_kanban_bottom_right">
+                                            <div class="hr_activity_container mb-1 ms-2 me-n1">
+                                                <field name="activity_ids" widget="kanban_activity"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- form view -->
+        <record id="egp_hr_org_structure_tashkil_form_view" model="ir.ui.view">
+            <field name="name">egp.tashkil.form.view</field>
+            <field name="model">egp.tashkil</field>
+            <field name="arch" type="xml">
+                <form string="Tashkil Form">
+                    <header>
+                        <field name="state" widget="statusbar" nolabel="1"
+                               options="{'fold_field': 'fold', 'statusbar_colors': {'archived': 'danger'}}"/>
+                        <button name="approve" string="Approve" type="object" class="oe_highlight btn btn-success"
+                                invisible="state in ['active', 'draft', 'archived']" title="Approve Tashkil"
+                                confirm="Are you sure to Approve the Tashkil ?"
+                                groups="egp_hr_org_structure.group_tashkil_ameriat"/>
+                        <button name="archive" string="Archive" type="object" class="oe_highlight btn btn-danger"
+                                invisible="state in ['archived', 'draft', 'process']" title="Archive Tashkil"
+                                confirm="Are you sure to Archive the Tashkil ?"
+                                groups="egp_hr_org_structure.group_tashkil_ameriat"/>
+                    </header>
+                    <sheet>
+                        <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" invisible="active"/>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="sequence_number"/>
+                            </h1>
+                        </div>
+                        <div class="o_employee_avatar m-0 p-0">
+                            <field name="image" widget="image" class="oe_avatar rounded-circle"/>
+                        </div>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" options="{'line_breaks': False}" widget="char"
+                                       placeholder="1402 ORG Structure" required="1"
+                                       readonly="state in ['active', 'archived']"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <field name="creation_year" required="1" readonly="state in ['active', 'archived']"/>
+                            <field name="description" readonly="state in ['active', 'archived']"/>
+                            <field name="attachment" filename="filename" readonly="state in ['active', 'archived']"/>
+                            <field name="filename" invisible="1"/>
+                            <field name="active" invisible="1"/>
+                        </group>
+
+                        <notebook>
+
+                            <page name="new_department" string="New department">
+                                <field name="department_new_ids" context="{'default_type': 'new'}"
+                                       readonly="state in ['active', 'archived']">
+                                    <tree editable="bottom" search="1">
+                                        <field name="name" required="1"/>
+                                        <field name="department_code"/>
+                                        <field name="department_creation_year"/>
+                                        <field name="parent_department_id"/>
+                                        <field name="position_status" readonly="1"/>
+                                    </tree>
+                                </field>
+                            </page>
+
+                            <!--  Newly Created Job page-->
+                            <page name="newly_created_positions" string="Newly created positions">
+                                <field name="position_new_ids" readonly="state in ['active', 'archived']">
+                                    <tree editable="bottom" search="1">
+                                        <field name="position_name" required="1"/>
+                                        <field name="position_code"/>
+                                        <field name="position_rank" required="1"/>
+                                        <field name="creation_year"/>
+                                        <field name="department_id"
+                                               options="{'no_edit': True, 'no_create': True, 'no_open': True}"/>
+                                        <field name="position_work_location"/>
+                                        <field name="position_no_of_recruit"/>
+                                        <field name="position_status" readonly="1"/>
+                                    </tree>
+                                </field>
+                            </page>
+
+                            <!--  Changed department page-->
+                            <page name="change_department" string="Changed department">
+                                <field name="department_change_ids" readonly="state in ['active', 'archived']">
+                                    <tree editable="bottom" search="1">
+                                        <field name="department_id" required="1"
+                                               options="{'no_edit': True, 'no_create': True, 'no_open': True}"/>
+                                        <field name="parent_department_id"
+                                               options="{'no_edit': True, 'no_create': True, 'no_open': True}"
+                                               required="1"/>
+                                    </tree>
+                                </field>
+                            </page>
+
+                            <!--  Changed position department page-->
+                            <page name="changed_position_department" string="Changed position department">
+                                <field name="changed_department_job_positions"
+                                       readonly="state in ['active', 'archived']">
+                                    <tree editable="top">
+                                        <field name="job_id" required="1"
+                                               options="{'no_edit': True, 'no_create': True, 'no_open': True}"/>
+                                        <field name="change_position_department_id"/>
+                                        <field name="change_position_code"/>
+                                        <field name="change_position_rank"/>
+                                        <field name="change_position_creation_year"/>
+                                        <field name="position_change_department" required="1"
+                                               options="{'no_edit': True, 'no_create': True, 'no_open': True}"/>
+                                    </tree>
+                                </field>
+                            </page>
+
+                            <!--  Cancelled positions page-->
+                            <page name="cancelled_positions" string="Cancelled positions">
+                                <field name="cancelled_job_positions" readonly="state in ['active', 'archived']">
+                                    <tree editable="top">
+                                        <field name="job_id" required="1"
+                                               options="{'no_edit': True, 'no_create': True, 'no_open': True}"/>
+                                        <field name="change_position_department_id"/>
+                                        <field name="change_position_code"/>
+                                        <field name="change_position_rank"/>
+                                        <field name="change_position_creation_year"/>
+                                        <field name="position_check" readonly="1"/>
+                                    </tree>
+                                </field>
+                            </page>
+
+                            <!--  Cancelled department page-->
+                            <page name="cancelled_department" string="Cancelled department">
+                                <field name="cancelled_department_ids" readonly="state in ['active', 'archived']">
+                                    <tree editable="top">
+                                        <field name="department_id" required="1"
+                                               options="{'no_edit': True, 'no_create': True, 'no_open': True}"/>
+                                        <field name="cancel_dep_code"/>
+                                        <field name="cancel_dep_year" string="Year"/>
+                                        <field name="department_active" readonly="1"/>
+                                    </tree>
+                                </field>
+                            </page>
+
+                            <!-- Previous Year ORG Structure Page -->
+                            <page name="previous_year_tashkils" string="Previous Year ORG structure">
+                                <field name="previous_tashkils">
+                                    <tree>
+                                        <field name="sequence_number"/>
+                                        <field name="name"/>
+                                        <field name="creation_year"/>
+                                        <field name="state"/>
+                                    </tree>
+                                </field>
+                            </page>
+
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" options="{'open_attachments': True}"/>
+                        <field name="message_ids"/>
+                        <field name="activity_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- Tree View -->
+        <record id="egp_hr_org_structure_tashkil_tree_view" model="ir.ui.view">
+            <field name="name">egp.tashkil.tree.view</field>
+            <field name="model">egp.tashkil</field>
+            <field name="arch" type="xml">
+                <tree string="HR Tashkil"
+                  default_order = 'sequence_number, sequence_number desc'
+                  edit="false"
+                  delete="false"
+                  duplicate="false"
+                  import="True"
+                  create="True">
+                    <field name="sequence_number"/>
+                    <field name="name"/>
+                    <field name="creation_year" widget="text"/>
+                    <field name="job_position_ids" string="Total Records"
+                           filter_domain="[('job_position_ids.department_id', 'ilike', self)]"/>
+                    <field name="state"
+                           decoration-success="state == 'active'" widget="badge"
+                           decoration-danger="state == 'archived'"
+                           decoration-info="state == 'draft'"
+                           decoration-warning="state == 'process'"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Egp HR org structure Action -->
+        <record id="egp_hr_org_structure_tashkil_action" model="ir.actions.act_window">
+            <field name="name">Create Tashkil</field>
+            <field name="res_model">egp.tashkil</field>
+            <field name="view_mode">tree,form,kanban,pivot,graph,gantt</field>
+            <field name="help" type="html">
+                <field name="context">
+                    {'search_default_group_by_state':1 }
+                </field>
+                <field name="search_view_id" ref="egp_hr_org_structure_egp_tashkil_search_view"/>
+                <p class="o_view_nocontent_smiling_face">
+                    Create your tashkil!
+                </p>
+            </field>
+        </record>
+
+        <menuitem
+                id="egp_hr_org_structure_tashkil_root_menu"
+                name="ORG Structure"
+                parent="hr.menu_hr_root"
+                sequence="5"/>
+
+        <menuitem
+                id="egp_hr_org_structure_tashkil_menu"
+                name="Create ORG Structure"
+                parent="egp_hr_org_structure_tashkil_root_menu"
+                action="egp_hr_org_structure_tashkil_action"
+                groups="egp_hr_org_structure.group_tashkil_karshnas,egp_hr_org_structure.group_tashkil_ameriat"
+                sequence="10"/>
+
+        <!-- Menu item visible to specific groups -->
+        <record id="menu_view_hr_job" model="ir.ui.menu">
+            <field name="name">Job Positions</field>
+            <field name="parent_id" ref="hr.menu_hr_root"/>
+            <field name="action" ref="hr.action_hr_job"/>
+            <field name="sequence">18</field>
+            <!-- add tashkil groups to restric visibility to other groups members -->
+            <field name="groups_id"
+                   eval="[(4, ref('egp_hr_org_structure.group_tashkil_karshnas')),
+                    (4, ref('egp_hr_org_structure.group_tashkil_ameriat')),
+                    (4, ref('egp_hr_org_structure.group_tashkil_Layha_Wazaif_Karmand'))]"/>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Full access for group_tashkil_Layha_Wazaif_Karmand without delete option -->
+    <record id="rule_full_access_for_layha_wazaif_modeer" model="ir.rule">
+        <field name="name">Full Access for Tashkil Layha Wazaif Karmand</field>
+        <field name="model_id" ref="hr.model_hr_job"/>
+        <field name="domain_force">[('id', '!=', False)]</field>
+        <field name="groups" eval="[(4, ref('egp_hr_org_structure.group_tashkil_Layha_Wazaif_Karmand'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <!-- Read-only for group_tashkil_karshnas on hr_job model -->
+    <record id="rule_read_only_for_tashkil_karshnas" model="ir.rule">
+        <field name="name">Read Only for Tashkil Karshnas</field>
+        <field name="model_id" ref="hr.model_hr_job"/>
+        <field name="domain_force">[('id', '!=', False)]</field>
+        <field name="groups" eval="[(4, ref('egp_hr_org_structure.group_tashkil_karshnas'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <!-- Read-only for group_tashkil_amir on hr_job model-->
+    <record id="rule_read_only_for_tashkil_amir" model="ir.rule">
+        <field name="name">Read Only for Tashkil Amir</field>
+        <field name="model_id" ref="hr.model_hr_job"/>
+        <field name="domain_force">[('id', '!=', False)]</field>
+        <field name="groups" eval="[(4, ref('egp_hr_org_structure.group_tashkil_ameriat'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <!--    Record rules for hr.work.location model-->
+    <record id="record_rule_egp_hr_org_structure_work_location_readonly" model="ir.rule">
+        <field name="name">Every user can see and edit own records</field>
+        <field name="model_id" ref="hr.model_hr_work_location"/>
+        <field name="domain_force">[('create_uid', '!=', user.id)]</field>
+        <field name="groups"
+               eval="[(4, ref('egp_hr_org_structure.group_tashkil_karshnas')), (4, ref('egp_hr_org_structure.group_tashkil_ameriat')), (4, ref('egp_hr_org_structure.group_tashkil_Layha_Wazaif_Karmand'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <record id="record_rule_egp_hr_org_structure_work_location_full_access" model="ir.rule">
+        <field name="name">Every user has full access on his/her own records</field>
+        <field name="model_id" ref="hr.model_hr_work_location"/>
+        <field name="domain_force">[('create_uid', '=', user.id)]</field>
+        <field name="groups"
+               eval="[(4, ref('egp_hr_org_structure.group_tashkil_karshnas')), (4, ref('egp_hr_org_structure.group_tashkil_ameriat')), (4, ref('egp_hr_org_structure.group_tashkil_Layha_Wazaif_Karmand'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+    <!--    Record rules for hr.contract.type model-->
+    <record id="record_rule_egp_hr_org_structure_contract_type_readonly" model="ir.rule">
+        <field name="name">Every user can see and edit own records</field>
+        <field name="model_id" ref="hr.model_hr_contract_type"/>
+        <field name="domain_force">[('create_uid', '!=', user.id)]</field>
+        <field name="groups"
+               eval="[(4, ref('egp_hr_org_structure.group_tashkil_karshnas')), (4, ref('egp_hr_org_structure.group_tashkil_ameriat')), (4, ref('egp_hr_org_structure.group_tashkil_Layha_Wazaif_Karmand'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <record id="record_rule_egp_hr_org_structure_contract_type_full_access" model="ir.rule">
+        <field name="name">Every user has full access on his/her own records</field>
+        <field name="model_id" ref="hr.model_hr_contract_type"/>
+        <field name="domain_force">[('create_uid', '=', user.id)]</field>
+        <field name="groups"
+               eval="[(4, ref('egp_hr_org_structure.group_tashkil_karshnas')), (4, ref('egp_hr_org_structure.group_tashkil_ameriat')), (4, ref('egp_hr_org_structure.group_tashkil_Layha_Wazaif_Karmand'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+</odoo>

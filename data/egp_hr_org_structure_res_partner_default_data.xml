@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--        res.partner default data is created-->
+        <record id="res_partner_default_records_central" model="res.partner">
+            <field name="name"><![CDATA[کابل- وزارت مخابرات و تکنالوژي معالوماتي]]></field>
+            <!--            <field name="street"><![CDATA[کابل- محمد جان خان واټ]]></field>-->
+        </record>
+        <record id="res_partner_default_records_NGR" model="res.partner">
+            <field name="name"><![CDATA[ننګرهار- ریاست مخابرات و تکنالوژي معالوماتي]]></field>
+        </record>
+        <record id="res_partner_default_records_LGMN" model="res.partner">
+            <field name="name"><![CDATA[لغمان-  ریاست مخابرات و تکنالوژي معالوماتي]]></field>
+        </record>
+        <record id="res_partner_default_records_HRT" model="res.partner">
+            <field name="name"><![CDATA[هرات-  ریاست مخابرات و تکنالوژي معالوماتي]]></field>
+        </record>
+        <record id="res_partner_default_records_MZR" model="res.partner">
+            <field name="name"><![CDATA[مزار شریف-  ریاست مخابرات و تکنالوژي معالوماتي]]></field>
+        </record>
+
+    </data>
+</odoo>

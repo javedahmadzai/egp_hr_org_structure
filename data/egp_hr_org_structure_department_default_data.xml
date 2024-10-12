@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- 3 for yellow, 1 for red, 2 for orange, 4 for blue, for 5 pink, 7 green, 8 dark blue           -->
+        <!-- Default data for hr.department model -->
+        <record id="hr_department_default_records_1" model="hr.department">
+            <field name="name"><![CDATA[مقام وزارت]]></field>
+            <field name="creation_year"><![CDATA[1402]]></field>
+            <field name="code"><![CDATA[1000-501]]></field>
+            <field name="color" eval="3"/>
+<!--            <field name="position_rank" ref="position_rank_default_records_out_of_rank"/>-->
+<!--            <field name="position_status" ref="position_status_default_records_carried_overed"/>-->
+        </record>
+        <record id="hr_department_default_records_2" model="hr.department">
+            <field name="name"><![CDATA[معینیت تخنیکي و مسلکي]]></field>
+            <field name="creation_year"><![CDATA[1402]]></field>
+            <field name="code"><![CDATA[1000-502]]></field>
+            <field name="color" eval="3"/>
+<!--            <field name="position_rank" ref="position_rank_default_records_superior_rank"/>-->
+<!--            <field name="position_status" ref="position_status_default_records_carried_overed"/>-->
+            <field name="parent_id" ref="hr_department_default_records_1"/>
+        </record>
+        <record id="hr_department_default_records_3" model="hr.department">
+            <field name="name"><![CDATA[معنیت مالي و اداري]]></field>
+            <field name="creation_year"><![CDATA[1402]]></field>
+            <field name="code"><![CDATA[1000-503]]></field>
+            <field name="color" eval="3"/>
+<!--            <field name="position_rank" ref="position_rank_default_records_out_of_rank"/>-->
+<!--            <field name="position_status" ref="position_status_default_records_carried_overed"/>-->
+            <field name="parent_id" ref="hr_department_default_records_1"/>
+        </record>
+        <record id="hr_department_default_records_4" model="hr.department">
+            <field name="name"><![CDATA[ریاست عمومی حکومت داری دیجیتلی]]></field>
+            <field name="creation_year"><![CDATA[1402]]></field>
+            <field name="code"><![CDATA[1000-504]]></field>
+            <field name="color" eval="3"/>
+<!--            <field name="position_rank" ref="position_rank_default_records_1_rank"/>-->
+<!--            <field name="position_status" ref="position_status_default_records_carried_overed"/>-->
+            <field name="parent_id" ref="hr_department_default_records_2"/>
+        </record>
+        <record id="hr_department_default_records_5" model="hr.department">
+            <field name="name"><![CDATA[ریاست سیستم سازی]]></field>
+            <field name="creation_year"><![CDATA[1402]]></field>
+            <field name="code"><![CDATA[1000-504]]></field>
+            <field name="color" eval="3"/>
+<!--            <field name="position_rank" ref="position_rank_default_records_2_rank"/>-->
+<!--            <field name="position_status" ref="position_status_default_records_carried_overed"/>-->
+            <field name="parent_id" ref="hr_department_default_records_4"/>
+        </record>
+        <record id="hr_department_default_records_6" model="hr.department">
+            <field name="name"><![CDATA[ریاست انسجام و تظمین کیفیت ها]]></field>
+            <field name="creation_year"><![CDATA[1402]]></field>
+            <field name="code"><![CDATA[1000-505]]></field>
+            <field name="color" eval="3"/>
+<!--            <field name="position_rank" ref="position_rank_default_records_2_rank"/>-->
+<!--            <field name="position_status" ref="position_status_default_records_carried_overed"/>-->
+            <field name="parent_id" ref="hr_department_default_records_4"/>
+        </record>
+          <record id="hr_department_default_records_7" model="hr.department">
+            <field name="name"><![CDATA[ریاست ساده سازی پروسها]]></field>
+            <field name="creation_year"><![CDATA[1402]]></field>
+            <field name="code"><![CDATA[1000-506]]></field>
+            <field name="color" eval="3"/>
+<!--            <field name="position_rank" ref="position_rank_default_records_2_rank"/>-->
+<!--            <field name="position_status" ref="position_status_default_records_carried_overed"/>-->
+            <field name="parent_id" ref="hr_department_default_records_4"/>
+        </record>
+        <record id="hr_department_default_records_8" model="hr.department">
+            <field name="name"><![CDATA[امریت انکشاف سیستم ها]]></field>
+            <field name="creation_year"><![CDATA[1403]]></field>
+            <field name="code"><![CDATA[1000-507]]></field>
+            <field name="color" eval="7"/>
+<!--            <field name="position_rank" ref="position_rank_default_records_3_rank"/>-->
+<!--            <field name="position_status" ref="position_status_default_records_new"/>-->
+            <field name="parent_id" ref="hr_department_default_records_5"/>
+        </record>
+        <record id="hr_department_default_records_9" model="hr.department">
+            <field name="name"><![CDATA[امریت تلفیق سیستم ها]]></field>
+            <field name="creation_year"><![CDATA[1403]]></field>
+            <field name="code"><![CDATA[1000-508]]></field>
+            <field name="color" eval="7"/>
+<!--            <field name="position_rank" ref="position_rank_default_records_3_rank"/>-->
+<!--            <field name="position_status" ref="position_status_default_records_new"/>-->
+            <field name="parent_id" ref="hr_department_default_records_5"/>
+        </record>
+        <record id="hr_department_default_records_9" model="hr.department">
+            <field name="name"><![CDATA[امریت تضمین کیفیت و انسجام سیستم ها]]></field>
+            <field name="creation_year"><![CDATA[1403]]></field>
+            <field name="code"><![CDATA[1000-508]]></field>
+            <field name="color" eval="7"/>
+<!--            <field name="position_rank" ref="position_rank_default_records_3_rank"/>-->
+<!--            <field name="position_status" ref="position_status_default_records_new"/>-->
+            <field name="parent_id" ref="hr_department_default_records_6"/>
+        </record>
+        <record id="hr_department_default_records_10" model="hr.department">
+            <field name="name"><![CDATA[امریت تحلیل و ډیزان سیستم ها]]></field>
+            <field name="creation_year"><![CDATA[1403]]></field>
+            <field name="code"><![CDATA[1000-5013]]></field>
+            <field name="color" eval="7"/>
+<!--            <field name="position_rank" ref="position_rank_default_records_3_rank"/>-->
+<!--            <field name="position_status" ref="position_status_default_records_new"/>-->
+            <field name="parent_id" ref="hr_department_default_records_5"/>
+        </record>
+    </data>
+</odoo>

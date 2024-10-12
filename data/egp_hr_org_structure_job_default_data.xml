@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Default data for hr.job model -->
+        <record id="hr_job_default_records_0" model="hr.job">
+            <field name="name"><![CDATA[ریس عمومي حکومتداری دیجیتلي]]></field>
+            <field name="creation_year"><![CDATA[1403]]></field>
+            <field name="code"><![CDATA[1000-500A1]]></field>
+            <field name="color" eval="3"/>
+<!--            <field name="position_rank" ref="position_rank_default_records_1_rank"/>-->
+            <!--            <field name="position_status" ref="position_status_default_records_carried_overed"/>-->
+            <field name="work_location_id" ref="hr_work_location_default_records_central"/>
+            <field name="department_id" ref="hr_department_default_records_4"/>
+            <!--            <field name="report_from"-->
+            <!--                   eval="[ref('hr_job_default_records_1'), ref('hr_job_default_records_2'), ref('hr_job_default_records_3') ]"/>-->
+            <field name="no_of_recruitment">1</field>
+        </record>
+        <record id="hr_job_default_records_1" model="hr.job">
+            <field name="name"><![CDATA[ریس سیستم سازی]]></field>
+            <field name="creation_year"><![CDATA[1403]]></field>
+            <field name="code"><![CDATA[1000-509]]></field>
+            <field name="color" eval="7"/>
+<!--            <field name="position_rank" ref="position_rank_default_records_2_rank"/>-->
+            <!--            <field name="position_status" ref="position_status_default_records_new"/>-->
+            <field name="work_location_id" ref="hr_work_location_default_records_central"/>
+            <field name="department_id" ref="hr_department_default_records_5"/>
+            <field name="no_of_recruitment">1</field>
+            <field name="report_to_id" ref="hr_job_default_records_0"/>
+        </record>
+        <record id="hr_job_default_records_2" model="hr.job">
+            <field name="name"><![CDATA[ریس تضمین کیفیت سیستم ها]]></field>
+            <field name="creation_year"><![CDATA[1403]]></field>
+            <field name="code"><![CDATA[1000-510]]></field>
+            <field name="color" eval="7"/>
+<!--            <field name="position_rank" ref="position_rank_default_records_2_rank"/>-->
+            <!--            <field name="position_status" ref="position_status_default_records_new"/>-->
+            <field name="work_location_id" ref="hr_work_location_default_records_central"/>
+            <field name="department_id" ref="hr_department_default_records_4"/>
+            <field name="no_of_recruitment">2</field>
+            <field name="report_to_id" ref="hr_job_default_records_0"/>
+        </record>
+        <record id="hr_job_default_records_3" model="hr.job">
+            <field name="name"><![CDATA[ریس ساده سازی پروسها]]></field>
+            <field name="creation_year"><![CDATA[1403]]></field>
+            <field name="code"><![CDATA[1000-511]]></field>
+            <field name="color" eval="7"/>
+<!--            <field name="position_rank" ref="position_rank_default_records_2_rank"/>-->
+            <!--            <field name="position_status" ref="position_status_default_records_new"/>-->
+            <field name="work_location_id" ref="hr_work_location_default_records_central"/>
+            <field name="department_id" ref="hr_department_default_records_7"/>
+            <field name="no_of_recruitment">3</field>
+            <field name="report_to_id" ref="hr_job_default_records_0"/>
+        </record>
+
+        <record id="hr_job_default_records_0" model="hr.job">
+            <field name="report_from"
+                   eval="[ref('hr_job_default_records_1'), ref('hr_job_default_records_2'), ref('hr_job_default_records_3') ]"/>
+        </record>
+        <record id="hr_job_default_records_4" model="hr.job">
+            <field name="name"><![CDATA[امر انکشاف سیستم ها]]></field>
+            <field name="creation_year"><![CDATA[1403]]></field>
+            <field name="code"><![CDATA[1000-512]]></field>
+            <field name="color" eval="7"/>
+<!--            <field name="position_rank" ref="position_rank_default_records_3_rank"/>-->
+            <!--            <field name="position_status" ref="position_status_default_records_new"/>-->
+            <field name="work_location_id" ref="hr_work_location_default_records_central"/>
+            <field name="department_id" ref="hr_department_default_records_7"/>
+            <field name="no_of_recruitment">3</field>
+            <field name="report_to_id" ref="hr_job_default_records_1"/>
+        </record>
+        <record id="hr_job_default_records_5" model="hr.job">
+            <field name="name"><![CDATA[امر تحلیل و ډیزاین سیستم ها]]></field>
+            <field name="creation_year"><![CDATA[1403]]></field>
+            <field name="code"><![CDATA[1000-513]]></field>
+            <field name="color" eval="7"/>
+<!--            <field name="position_rank" ref="position_rank_default_records_3_rank"/>-->
+            <!--            <field name="position_status" ref="position_status_default_records_new"/>-->
+            <field name="work_location_id" ref="hr_work_location_default_records_central"/>
+            <field name="department_id" ref="hr_department_default_records_7"/>
+            <field name="no_of_recruitment">2</field>
+            <field name="report_to_id" ref="hr_job_default_records_1"/>
+        </record>
+        <record id="hr_job_default_records_6" model="hr.job">
+            <field name="name"><![CDATA[امر تلفیق سیستم ها]]></field>
+            <field name="creation_year"><![CDATA[1403]]></field>
+            <field name="code"><![CDATA[1000-514]]></field>
+            <field name="color" eval="7"/>
+<!--            <field name="position_rank" ref="position_rank_default_records_3_rank"/>-->
+            <!--            <field name="position_status" ref="position_status_default_records_new"/>-->
+            <field name="work_location_id" ref="hr_work_location_default_records_central"/>
+            <field name="department_id" ref="hr_department_default_records_7"/>
+            <field name="no_of_recruitment">5</field>
+            <field name="report_to_id" ref="hr_job_default_records_1"/>
+        </record>
+        <record id="hr_job_default_records_6" model="hr.job">
+            <field name="name"><![CDATA[متخصیص تحلیل و ډیزاین سیستم ها]]></field>
+            <field name="creation_year"><![CDATA[1403]]></field>
+            <field name="code"><![CDATA[1000-515]]></field>
+            <field name="color" eval="7"/>
+<!--            <field name="position_rank" ref="position_rank_default_records_3_rank"/>-->
+            <!--            <field name="position_status" ref="position_status_default_records_new"/>-->
+            <field name="work_location_id" ref="hr_work_location_default_records_central"/>
+            <field name="department_id" ref="hr_department_default_records_7"/>
+            <field name="no_of_recruitment">5</field>
+            <field name="report_to_id" ref="hr_job_default_records_5"/>
+        </record>
+        <record id="hr_job_default_records_7" model="hr.job">
+            <field name="name"><![CDATA[متخصیص انکشاف سیستم ها]]></field>
+            <field name="creation_year"><![CDATA[1403]]></field>
+            <field name="code"><![CDATA[1000-517]]></field>
+            <field name="color" eval="7"/>
+<!--            <field name="position_rank" ref="position_rank_default_records_3_rank"/>-->
+            <!--            <field name="position_status" ref="position_status_default_records_new"/>-->
+            <field name="work_location_id" ref="hr_work_location_default_records_central"/>
+            <field name="department_id" ref="hr_department_default_records_8"/>
+            <field name="no_of_recruitment">5</field>
+            <field name="report_to_id" ref="hr_job_default_records_4"/>
+        </record>
+        <record id="hr_job_default_records_8" model="hr.job">
+            <field name="name"><![CDATA[متخصیص تلفیق سیستم ها]]></field>
+            <field name="creation_year"><![CDATA[1403]]></field>
+            <field name="code"><![CDATA[1000-518]]></field>
+            <field name="color" eval="7"/>
+<!--            <field name="position_rank" ref="position_rank_default_records_3_rank"/>-->
+            <!--            <field name="position_status" ref="position_status_default_records_new"/>-->
+            <field name="work_location_id" ref="hr_work_location_default_records_central"/>
+            <field name="department_id" ref="hr_department_default_records_7"/>
+            <field name="no_of_recruitment">5</field>
+            <field name="report_to_id" ref="hr_job_default_records_6"/>
+        </record>
+        <record id="hr_job_default_records_9" model="hr.job">
+            <field name="name"><![CDATA[کارشناس انکشاف سیستم ها]]></field>
+            <field name="creation_year"><![CDATA[1403]]></field>
+            <field name="code"><![CDATA[1000-519]]></field>
+            <field name="color" eval="7"/>
+<!--            <field name="position_rank" ref="position_rank_default_records_4_rank"/>-->
+            <!--            <field name="position_status" ref="position_status_default_records_new"/>-->
+            <field name="work_location_id" ref="hr_work_location_default_records_central"/>
+            <field name="department_id" ref="hr_department_default_records_8"/>
+            <field name="no_of_recruitment">12</field>
+            <field name="report_to_id" ref="hr_job_default_records_4"/>
+        </record>
+        <record id="hr_job_default_records_10" model="hr.job">
+            <field name="name"><![CDATA[کارشناس تلفیق سیستم ها]]></field>
+            <field name="creation_year"><![CDATA[1403]]></field>
+            <field name="code"><![CDATA[1000-520]]></field>
+            <field name="color" eval="7"/>
+<!--            <field name="position_rank" ref="position_rank_default_records_4_rank"/>-->
+            <!--            <field name="position_status" ref="position_status_default_records_new"/>-->
+            <field name="work_location_id" ref="hr_work_location_default_records_central"/>
+            <field name="department_id" ref="hr_department_default_records_5"/>
+            <field name="report_to_id" ref="hr_job_default_records_6"/>
+            <field name="no_of_recruitment">5</field>
+        </record>
+    </data>
+</odoo>

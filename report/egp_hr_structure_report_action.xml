@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!-- egp hr job summary report action -->
+    <record id="action_report_job_summary" model="ir.actions.report">
+        <field name="name">Position information</field>
+        <field name="model">hr.job</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">egp_hr_org_structure.report_job_summary_template</field>
+        <field name="report_file">egp_hr_org_structure.report_job_summary_template</field>
+        <field name="print_report_name">'Position - %s' % (object.name).replace('/', '')</field>
+        <field name="binding_model_id" ref="model_hr_job"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="egp_hr_org_structure.report_paperformat_a4"/>
+        <field name="groups_id" eval="[(4, ref('egp_hr_org_structure.group_tashkil_Layha_Wazaif_Karmand'))]"/>
+    </record>
+
+    <!-- egp hr job description report action -->
+    <record id="action_report_job_description" model="ir.actions.report">
+        <field name="name">Print Position</field>
+        <field name="model">hr.job</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">egp_hr_org_structure.report_custom_job_description_template</field>
+        <field name="report_file">egp_hr_org_structure.report_custom_job_description_template</field>
+        <field name="print_report_name">'Position - %s' % (object.name).replace('/', '')</field>
+        <field name="binding_model_id" ref="model_hr_job"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="egp_hr_org_structure.report_paperformat_a4"/>
+<!--        <field name="groups_id" eval="[(4, ref('egp_hr_org_structure.group_tashkil_Layha_Wazaif_Karmand'))]"/>-->
+    </record>
+
+    <!-- egp hr Tashkil report action -->
+    <record id="action_report_tashkil" model="ir.actions.report">
+        <field name="name">Print Tashkil</field>
+        <field name="model">egp.tashkil</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">egp_hr_org_structure.report_tashkil_template</field>
+        <field name="report_file">egp_hr_org_structure.report_tashkil_template</field>
+        <field name="print_report_name">(object.name).replace('/', '')</field>
+        <field name="binding_model_id" ref="egp_hr_org_structure.model_egp_tashkil"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="egp_hr_org_structure.report_paperformat_a4"/>
+        <field name="groups_id"
+               eval="[(4, ref('egp_hr_org_structure.group_tashkil_ameriat')),(4, ref('egp_hr_org_structure.group_tashkil_karshnas'))]"/>
+    </record>
+
+    <!-- egp hr Tashkil wizard report action -->
+    <record id="tashkil_wizard_report_action" model="ir.actions.report">
+        <field name="name">Selective Report Print</field>
+        <field name="model">tashkil.wizard.report</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">egp_hr_org_structure.tashkil_wizard_report_template</field>
+        <field name="report_file">egp_hr_org_structure.tashkil_wizard_report_template</field>
+        <field name="print_report_name">"Tashkil Report - %s" % (object.name)</field>
+        <field name="binding_model_id" ref="egp_hr_org_structure.model_tashkil_wizard_report"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="egp_hr_org_structure.report_paperformat_a4"/>
+        <field name="groups_id"
+               eval="[(4, ref('egp_hr_org_structure.group_tashkil_ameriat')),(4, ref('egp_hr_org_structure.group_tashkil_karshnas'))]"/>
+    </record>
+
+</odoo>

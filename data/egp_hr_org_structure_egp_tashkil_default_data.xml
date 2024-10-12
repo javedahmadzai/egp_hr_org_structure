@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Default data for egp.tashkil model -->
+        <record id="egp_hr_org_structure_egp_tashkil_default_data_1402" model="egp.tashkil">
+            <field name="name"><![CDATA[تشکیل سال ۱۴۰۲]]></field>
+            <field name="creation_year"><![CDATA[1402]]></field>
+            <field name="description">
+                <![CDATA[تشکیل سال ۱۴۰۲ از طرف مقام ریاست الوزرا تایید و قابل استفاده می باشد]]>
+            </field>
+            <field name="job_position_ids" eval="[
+        (0, 0, {
+            'inherited_job_id': ref('hr_job_default_records_0'),
+            'inherited_department_id': ref('hr_department_default_records_4'),
+            'position_rank': ref('position_rank_default_records_1_rank'),
+        }),
+        (0, 0, {
+            'inherited_job_id': ref('hr_job_default_records_1'),
+            'inherited_department_id': ref('hr_department_default_records_5'),
+            'position_rank': ref('position_rank_default_records_2_rank'),
+        }),
+        (0, 0, {
+            'inherited_job_id': ref('hr_job_default_records_3'),
+            'inherited_department_id': ref('hr_department_default_records_7'),
+            'position_rank': ref('position_rank_default_records_2_rank'),
+            'changed_department_id': ref('hr_department_default_records_6'),
+        }),
+        (0, 0, {
+            'inherited_job_id': ref('hr_job_default_records_4'),
+            'inherited_department_id': ref('hr_department_default_records_8'),
+            'position_rank': ref('position_rank_default_records_3_rank'),
+
+        }),
+        ]"/>
+        </record>
+    </data>
+</odoo>

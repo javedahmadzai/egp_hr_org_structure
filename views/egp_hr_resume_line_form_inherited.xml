@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="resume_line_view_form_inherited">
+        <field name="name">resume.line.view.form.inherited</field>
+        <field name="model">hr.resume.line</field>
+        <field name="inherit_id" ref="hr_skills.resume_line_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="attributes">
+               <attribute name="placeholder">e.g. Computer skills.</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
